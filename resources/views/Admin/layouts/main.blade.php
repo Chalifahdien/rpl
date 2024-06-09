@@ -20,6 +20,9 @@
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
 
+    <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+
+
 </head>
 
 <body id="page-top">
@@ -43,7 +46,7 @@
             <hr class="sidebar-divider my-0">
 
             <!-- Nav Item - Dashboard -->
-            <li class="nav-item active">
+            <li class="nav-item {{ Request::is('admin') ? 'active' : '' }}">
                 <a class="nav-link" href="/admin">
                     <i class="fas fa-fw fa-home"></i>
                     <span>Beranda</span></a>
@@ -51,7 +54,7 @@
 
       
             <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
+            <li class="nav-item {{ Request::is('user') ? 'active' : '' }}">
                 <a class="nav-link" href="/user">
                     <i class="fas fa-fw fa-user"></i>
                     <span>Pengguna</span>
@@ -60,7 +63,7 @@
             
             
             <!-- Nav Item - Utilities Collapse Menu -->
-            <li class="nav-item">
+            <li class="nav-item {{ Request::is('request', 'ongoing') ? 'active' : '' }} ">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
                     aria-expanded="true" aria-controls="collapseUtilities">
                     <i class="fas fa-fw fa-folder"></i>
@@ -69,9 +72,9 @@
                 <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="/permintaan">Permintaan</a>
-                        <a class="collapse-item" href="/berjalan">Berjalan</a>
-                        <a class="collapse-item" href="/selesai">Selesai</a>
+                        <a class="collapse-item {{ Request::is('request') ? 'active' : '' }}" href="/request">Permintaan</a>
+                        <a class="collapse-item {{ Request::is('ongoing') ? 'active' : '' }}" href="/ongoing">Berjalan</a>
+                        <a class="collapse-item {{ Request::is('history') ? 'active' : '' }}" href="/history">Riwayat</a>
                     </div>
                 </div>
             </li>
@@ -308,37 +311,12 @@
 
                         <div class="topbar-divider d-none d-sm-block"></div>
 
-                        <!-- Nav Item - User Information -->
-                        <li class="nav-item dropdown no-arrow">
-                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
-                                <img class="img-profile rounded-circle" src="img/undraw_profile.svg">
+                        <li class="nav-item dropdown no-arrow mx-1">
+                            <a class="nav-link" href="/login" data-toggle="modal" data-target="#logoutModal" >
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Logout</span>
+                                <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                             </a>
-                            <!-- Dropdown - User Information -->
-                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="/profile">
-                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Profile
-                                </a>
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Settings
-                                </a>
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Activity Log
-                                </a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="/login" data-toggle="modal"
-                                    data-target="#logoutModal">
-                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Logout
-                                </a>
-                            </div>
                         </li>
-
                     </ul>
 
                 </nav>
@@ -389,8 +367,11 @@
 
     <!-- Page level plugins -->
     <script src="vendor/chart.js/Chart.min.js"></script>
+    <script src="vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
     <!-- Page level custom scripts -->
+    <script src="js/demo/datatables-demo.js"></script>
     <script src="js/demo/chart-area-demo.js"></script>
     <script src="js/demo/chart-pie-demo.js"></script>
 

@@ -26,5 +26,14 @@ Route::get('/admin', function () {
     return view('Admin/admin', ['tittle'=>' ']);
 });
 Route::get('/user', function () {
-    return view('Admin/user', ['tittle'=>'Pengguna']);
+    return view('Admin/user', ['tittle'=>'User']);
+});
+Route::get('/request', function () {
+    return view('Admin/Pekerjaan/permintaan', ['tittle'=>'Request']);
+});
+Route::get('/ongoing', function () {
+    return view('Admin/Pekerjaan/berjalan', ['tittle'=>'Ongoing']);
+});
+Route::get('/history', function () {
+    return view('Admin/Pekerjaan/riwayat', ['tittle'=>'Ongoing']);
 });
